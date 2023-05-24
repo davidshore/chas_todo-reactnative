@@ -18,9 +18,9 @@ I dagens uppgift ska vi öva på Navigiering i React Native.
 
 1. Sätt upp en StackNavigator med 3 Screens: Home, Detail och Add.
 2. Skapa `[todos, setTodos]` med `useState` på Home, där alla todo items kommer att ligga.
-3. Använd FlatList för att visa todos på Home.
-4. Varje item i FlatList ska kunna navigera till sin Detail-sida. Datan för varje item skickas med i navigate-funktionen. Använd TouchableOpacity som knapp för varje item. Läs på om att skicka data mellan routes här: [Params](https://reactnavigation.org/docs/params)
-5. Add-sidan ska vara en Modal. Se denna guide: [Modal](https://reactnavigation.org/docs/modal/)
+3. Använd `FlatList` för att visa todos på Home.
+4. Varje item i `FlatList` ska kunna navigera till sin Detail-sida. Datan för varje item skickas med i navigate-funktionen. Skicka även med funktioner för att updatera state. T.ex. för Done och Delete. Läs på om att skicka data mellan routes här: [Params](https://reactnavigation.org/docs/params). Använd `TouchableOpacity` som knapp för varje item.
+5. Add-sidan ska vara en `Modal`. Se denna guide: [Modal](https://reactnavigation.org/docs/modal/)
 
 ## Hur du lämnar in
 
@@ -45,3 +45,7 @@ git push -u origin main
 Efter denna uppgift ska ni kunna skapa appar med navigering i React Native.
 
 ---
+
+### :runner: Extrauppgifter
+
+Lägg till en Genomfört-sektion under todo-listan. Byt ut `FlatList` mot `SectionList`.
