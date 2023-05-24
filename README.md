@@ -1,0 +1,47 @@
+# Todo app i React Native
+
+I dagens uppgift ska vi öva på Navigiering i React Native.
+
+![Todo App](todo-app.png)
+
+### Sätt upp projektet och installera dependencies
+
+1. `npx create-expo-app todo-app`
+
+2. `cd todo-app`
+
+3. `npx expo install react-native-screens react-native-safe-area-context`
+
+4. `npm install @react-navigation/native-stack`
+
+## Hur du klarar uppgiften
+
+1. Sätt upp en StackNavigator med 3 Screens: Home, Detail och Add.
+2. Skapa `[todos, setTodos]` med `useState` på Home, där alla todo items kommer att ligga.
+3. Använd FlatList för att visa todos på Home.
+4. Varje item i FlatList ska kunna navigera till sin Detail-sida. Datan för varje item skickas med i navigate-funktionen. Använd TouchableOpacity som knapp för varje item. Läs på om att skicka data mellan routes här: [Params](https://reactnavigation.org/docs/params)
+5. Add-sidan ska vara en Modal. Se denna guide: [Modal](https://reactnavigation.org/docs/modal/)
+
+## Hur du lämnar in
+
+1. Skapa ett repo på github.
+2. Ladd up dina filer till github:
+
+```
+git init
+git add .
+git commit -m "first commit"
+git branch -M main
+git remote add origin <Adressen till ditt repo>
+git push -u origin main
+```
+
+3. Klicka på uppgiften i canvas och ange länken till ditt repo.
+
+---
+
+### :boom: Success!
+
+Efter denna uppgift ska ni kunna skapa appar med navigering i React Native.
+
+---
