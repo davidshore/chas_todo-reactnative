@@ -20,6 +20,10 @@ I dagens uppgift ska vi öva på Navigiering i React Native.
 
 #### Expo router med Typescript (för javascript gör manuell installation)
 
+1. `npx create-expo-app todo-app`
+
+2. `npm run reset-project`
+
 ## Hur du klarar uppgiften
 
 1. Sätt upp en StackNavigator med 3 Screens: Home, Detail och Add.
