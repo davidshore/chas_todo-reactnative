@@ -4,15 +4,21 @@ I dagens uppgift ska vi öva på Navigiering i React Native.
 
 ![Todo App](todo-app.png)
 
-### Sätt upp projektet och installera dependencies
+### Sätt upp projektet med React Navigation eller Expo router
 
-1. `npx create-expo-app todo-app`
+#### React Navigation
+
+1. `npx create-expo-app todo-app --template blank`
 
 2. `cd todo-app`
 
-3. `npx expo install react-native-screens react-native-safe-area-context`
+3. `npm install @react-navigation/native`
 
-4. `npm install @react-navigation/native-stack`
+4. `npx expo install react-native-screens react-native-safe-area-context`
+
+5. `npm install @react-navigation/native-stack`
+
+#### Expo router med Typescript (för javascript gör manuell installation)
 
 ## Hur du klarar uppgiften
 
