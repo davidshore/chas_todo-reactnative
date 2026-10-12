@@ -34,6 +34,10 @@ Du kan köra `npm run reset-project` innan du börjar för att ta bort mallens e
 
 Testa hela flödet på Android eller iOS: lägga till, avbryta, öppna detaljer, ändra status, ta bort och gå tillbaka.
 
+## Automatiska tester
+
+Använd det medföljande [testpaketet](tests/README.md) och lägg till de `testID` som testerna behöver. Kör `npm run test:assignment` under arbetet. Testerna kontrollerar appens beteende, och GitHub Actions kör även en TypeScript-kontroll vid push. Du väljer själv hur appen byggs.
+
 ## VG-uppgift
 
 - Visa genomförda todos i en egen sektion med `SectionList`.
