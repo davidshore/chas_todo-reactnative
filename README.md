@@ -34,11 +34,7 @@ Du kan köra `npm run reset-project` innan du börjar för att ta bort mallens e
 
 Testa hela flödet på Android eller iOS: lägga till, avbryta, öppna detaljer, ändra status, ta bort och gå tillbaka.
 
-## Hur du lämnar in
-
-Ladda upp projektet till ett eget repo på GitHub. Lägg till en kort README med startinstruktioner och vilken plattform du har testat på. Lämna repo-länken i Canvas.
-
-## Extrauppgifter
+## VG-uppgift
 
 - Visa genomförda todos i en egen sektion med `SectionList`.
 - Spara todos lokalt så att de finns kvar efter omstart.
