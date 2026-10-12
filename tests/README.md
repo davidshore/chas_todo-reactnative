@@ -19,7 +19,31 @@ Testpaketet är verifierat med Expo SDK 57, React Native Testing Library 14.1 oc
 
 ## Så hittar testerna gränssnittet
 
-Lägg till följande `testID` på motsvarande element. Det ändrar inte deras synliga text eller utseende.
+`testID` är en prop i React Native som ger testerna ett namn att söka efter. Du lägger den direkt i JSX på ett befintligt element, precis som `style` eller `onPress`. Den ändrar inte elementets synliga text eller utseende.
+
+Exempel på var ID:n placeras i ett formulär:
+
+```tsx
+<View testID="add-screen">
+  <TextInput
+    testID="todo-input"
+    value={title}
+    onChangeText={setTitle}
+  />
+  <Pressable testID="save-todo" onPress={handleSave}>
+    <Text>Spara</Text>
+  </Pressable>
+  <Pressable testID="cancel-add" onPress={handleCancel}>
+    <Text>Avbryt</Text>
+  </Pressable>
+</View>
+```
+
+Använd dina egna variabler och funktioner; exemplet visar bara hur du lägger till `testID`. Skärmens ID sitter på en `View` som omsluter innehållet. Knappens ID sitter på det tryckbara elementet, exempelvis `Pressable`, och fältets ID sitter på `TextInput`.
+
+Om du har en egen knappkomponent behöver den skicka `testID` vidare till sin inre `Pressable` eller motsvarande React Native-element. Det räcker inte att ta emot propen utan att använda den.
+
+Använd namnen nedan exakt, inklusive små bokstäver och bindestreck. Själva propen skrivs `testID`, med stort **ID**.
 
 | `testID` | Element |
 | --- | --- |
@@ -35,6 +59,14 @@ Lägg till följande `testID` på motsvarande element. Det ändrar inte deras sy
 | `todo-status` | `Text` med status på varje rad och på Detail |
 | `toggle-todo` | Knappen som växlar status på Detail |
 | `delete-todo` | Ta bort-knappen på Detail |
+
+### ID:n på todo-rader
+
+Varje rad får samma `testID="todo-row"`. Testerna hämtar alla rader och använder titeln för att hitta rätt rad. Lägg `todo-status` på statusens `Text` **inne i varje rad**, och även på statusens `Text` på Detail.
+
+`testID` är inte todons unika ID och ersätter inte listans `keyExtractor`. Todo-ID:t identifierar din data; `testID` hjälper testerna att hitta ett element i gränssnittet. Använd därför inte exempelvis `testID={item.id}` eller `testID={'todo-row-' + item.id}` för raderna.
+
+Om ett test inte hittar ett element, kontrollera stavningen, att ID:t sitter på rätt element och att eventuella egna komponenter skickar propen vidare. Kör sedan `npm run test:assignment` igen.
 
 Status ska visas som **Ej genomförd** eller **Genomförd**. Varje rad ska visa sin titel. En ny todo börjar som ej genomförd. Home ska vara appens `/`-route. Testerna hittar automatiskt `src/app` eller `app`; använd bara en av dem.
 
