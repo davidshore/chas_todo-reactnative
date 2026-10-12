@@ -1,61 +1,44 @@
-# Todo app i React Native
+# Todo-app i React Native med Expo Router
 
-I dagens uppgift ska vi öva på Navigiering i React Native.
+Bygg en todo-app där du övar på navigering och delat state med **Expo Router**.
 
-![Todo App](todo-app.png)
+![Todo-app](todo-app.png)
 
-### Sätt upp projektet med React Navigation eller Expo router
+## Kom igång
 
-#### React Navigation
+Skapa ett Expo-projekt med standardmallen, som innehåller Expo Router och TypeScript:
 
-1. `npx create-expo-app todo-app --template blank`
+```bash
+npx create-expo-app@latest todo-app
+cd todo-app
+npx expo start
+```
 
-2. `cd todo-app`
-
-3. `npm install @react-navigation/native`
-
-4. `npx expo install react-native-screens react-native-safe-area-context`
-
-5. `npm install @react-navigation/native-stack`
-
-#### Expo router med Typescript (för javascript gör manuell installation)
-
-1. `npx create-expo-app todo-app`
-
-2. `npm run reset-project`
+Du kan köra `npm run reset-project` innan du börjar för att ta bort mallens exempelskärmar. Se [Expos startguide](https://docs.expo.dev/tutorial/create-your-first-app/) om du behöver hjälp med installationen.
 
 ## Hur du klarar uppgiften
 
-1. Sätt upp en StackNavigator med 3 Screens: Home, Detail och Add.
-2. Skapa `[todos, setTodos]` med `useState` på Home, där alla todo-items kommer att ligga.
-3. Använd `FlatList` för att visa todos på Home.
-4. Varje item i `FlatList` ska kunna navigera till sin Detail-sida. Datan för varje item skickas med i navigate-funktionen. Skicka även med funktioner för att updatera state. T.ex. för Done och Delete. Läs på om att skicka data mellan routes här: [Params](https://reactnavigation.org/docs/params). Använd `TouchableOpacity` som knapp för varje item.
-5. Add-sidan ska vara en `Modal`. Se denna guide: [Modal](https://reactnavigation.org/docs/modal/)
+1. Använd Expo Router med en stack och tre skärmar: **Home**, **Detail** och **Add**.
+2. **Home:** Visa dina todos med `FlatList`. Ett tryck på en todo ska öppna dess detaljsida.
+3. **Detail:** Visa vald todo och låt användaren markera den som genomförd/ej genomförd eller ta bort den.
+4. **Add:** Öppna som en modal där användaren kan lägga till en todo eller avbryta. Tomma titlar ska inte gå att spara.
+5. Ändringar ska synas när användaren återvänder till Home. Todo-listan ska behållas mellan skärmarna, men behöver inte sparas efter omstart.
+
+## Tips på vägen
+
+- **Låt filerna beskriva navigationen.** Läs om [routes och layouts](https://docs.expo.dev/router/basics/core-concepts/) och fundera på hur en dynamisk route kan representera en detaljsida.
+- **Skicka ett ID, inte hela todon eller funktioner.** Läs om [route-parametrar](https://docs.expo.dev/router/reference/url-parameters/) och hämta aktuell todo från ditt delade state.
+- **Tänk igenom var state ska finnas.** Alla tre skärmar behöver samma lista. [React Context](https://react.dev/learn/passing-data-deeply-with-context) kan vara ett sätt att dela den. Uppdatera listan utan att mutera state och ge varje todo ett stabilt, unikt ID.
+- **Använd en modal-route för Add.** Se [Expos modalguide](https://docs.expo.dev/router/advanced/modals/).
+- **Tänk på användaren.** Prova `Pressable` för tryckbara rader. Visa tydliga tomma lägen och hantera en todo som inte längre finns. Kontrollera att tangentbordet inte täcker formuläret.
+
+Testa hela flödet på Android eller iOS: lägga till, avbryta, öppna detaljer, ändra status, ta bort och gå tillbaka.
 
 ## Hur du lämnar in
 
-1. Skapa ett repo på github.
-2. Ladd up dina filer till github:
+Ladda upp projektet till ett eget repo på GitHub. Lägg till en kort README med startinstruktioner och vilken plattform du har testat på. Lämna repo-länken i Canvas.
 
-```
-git init
-git add .
-git commit -m "first commit"
-git branch -M main
-git remote add origin <Adressen till ditt repo>
-git push -u origin main
-```
+## Extrauppgifter
 
-3. Klicka på uppgiften i canvas och ange länken till ditt repo.
-
----
-
-### :boom: Success!
-
-Efter denna uppgift ska ni kunna skapa appar med navigering i React Native.
-
----
-
-### :runner: Extrauppgifter
-
-Lägg till en Genomfört-sektion under todo-listan. Byt ut `FlatList` mot `SectionList`.
+- Visa genomförda todos i en egen sektion med `SectionList`.
+- Spara todos lokalt så att de finns kvar efter omstart.
