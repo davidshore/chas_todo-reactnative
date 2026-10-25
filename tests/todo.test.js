@@ -31,8 +31,7 @@ beforeEach(async () => {
     confirm?.onPress?.();
   });
   // Load the student's actual routes, including their root layout and providers.
-  navigation = renderRouter(path.join(appRoot, routeDirs[0]), { initialUrl: '/' });
-  await navigation;
+  navigation = await renderRouter(path.join(appRoot, routeDirs[0]), { initialUrl: '/' });
   await screen.findByTestId('home-screen');
 });
 

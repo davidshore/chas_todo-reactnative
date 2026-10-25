@@ -5,17 +5,45 @@ Testerna provar lägga till, tomma titlar, rätt detaljsida, statusändringar, t
 ## Installera i din app
 
 1. Kopiera den här `tests`-mappen till roten av din Expo-app, bredvid `package.json`. Appen ska ligga i roten av sitt GitHub-repo.
-2. Kör från appens projektrot:
+2. Installera testbiblioteken från appens projektrot. För **Expo SDK 58**:
 
 ```bash
-npx expo install jest-expo jest @types/jest @testing-library/react-native@14.1.0 test-renderer@1.2.0 --dev
+npx expo install jest-expo jest @types/jest @testing-library/react-native@14.1.0 test-renderer@1.3.1 --dev
+```
+
+För **Expo SDK 57** används Testing Library 13 i stället:
+
+```bash
+npx expo install jest-expo jest @types/jest @testing-library/react-native@13.3.3 react-test-renderer@19.2.3 --dev
+```
+
+Se din SDK-version med `npm ls expo`. Uppgradera inte hela appen bara för att köra testerna. Använd testbibliotek som passar din befintliga SDK; [Expos testguide](https://docs.expo.dev/router/reference/testing/) beskriver skillnaden mellan SDK 57 och 58.
+
+3. Lägg till testkommandot och kör testerna:
+
+```bash
 node tests/install.cjs
 npm run test:assignment
 ```
 
 Installationsskriptet lägger till `test:assignment` i `package.json` och kopierar workflow-filen till `.github/workflows/`. Övriga scripts behålls. Checka in dessa filer och din uppdaterade `package-lock.json`.
 
-Testpaketet är verifierat med Expo SDK 57, React Native Testing Library 14.1 och test-renderer 1.2. Versionsvalet för renderern matchar React 19.2 i SDK 57. Se [Expos testguide](https://docs.expo.dev/develop/unit-testing/) och [Expo Router testing](https://docs.expo.dev/router/reference/testing/).
+Se även [Expos guide till Jest](https://docs.expo.dev/develop/unit-testing/).
+
+### Felet navigation.getPathname is not a function
+
+En äldre version av testfilen sparade resultatet innan `renderRouter` hade blivit färdig. I SDK 58 är resultatet ett Promise som behöver inväntas. Ändra följande i `beforeEach` i `tests/todo.test.js`:
+
+```js
+// Ersätt dessa två rader:
+navigation = renderRouter(path.join(appRoot, routeDirs[0]), { initialUrl: '/' });
+await navigation;
+
+// Med denna rad:
+navigation = await renderRouter(path.join(appRoot, routeDirs[0]), { initialUrl: '/' });
+```
+
+Skillnaden är att `navigation` nu innehåller det färdiga testresultatet i stället för ett Promise. Kör sedan `npm run test:assignment` igen. Ändringen görs i testfilen och kräver ingen ändring av appens navigation.
 
 ## Så hittar testerna gränssnittet
 
